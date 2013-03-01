@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		43157FC316DC2342004C9710 /* redtex.png in Resources */ = {isa = PBXBuildFile; fileRef = 43157FC216DC2342004C9710 /* redtex.png */; };
 		4360C14F16DBFEFF000CF56D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4360C14E16DBFEFF000CF56D /* UIKit.framework */; };
 		4360C15116DBFEFF000CF56D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4360C15016DBFEFF000CF56D /* Foundation.framework */; };
 		4360C15316DBFEFF000CF56D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4360C15216DBFEFF000CF56D /* CoreGraphics.framework */; };
@@ -23,9 +24,21 @@
 		4360C17116DBFEFF000CF56D /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 4360C17016DBFEFF000CF56D /* Shader.fsh */; };
 		4360C17316DBFEFF000CF56D /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 4360C17216DBFEFF000CF56D /* Shader.vsh */; };
 		4360C17616DBFEFF000CF56D /* TLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4360C17516DBFEFF000CF56D /* TLViewController.m */; };
+		4360C18716DC00DA000CF56D /* MEllipse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4360C17D16DC00D9000CF56D /* MEllipse.m */; };
+		4360C18816DC00DA000CF56D /* MLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4360C17E16DC00D9000CF56D /* MLine.m */; };
+		4360C18916DC00DA000CF56D /* MShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 4360C17F16DC00D9000CF56D /* MShape.m */; };
+		4360C18A16DC00DA000CF56D /* MSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = 4360C18016DC00D9000CF56D /* MSymbol.m */; };
+		4360C18B16DC00DA000CF56D /* MVBShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 4360C18116DC00D9000CF56D /* MVBShape.m */; };
+		4360C18E16DC0456000CF56D /* waldo_icon_57.png in Resources */ = {isa = PBXBuildFile; fileRef = 4360C18D16DC0456000CF56D /* waldo_icon_57.png */; };
+		4360C19016DC0C19000CF56D /* weetex.png in Resources */ = {isa = PBXBuildFile; fileRef = 4360C18F16DC0C19000CF56D /* weetex.png */; };
+		43EDB24316DD5C9400661DA7 /* bloktex.png in Resources */ = {isa = PBXBuildFile; fileRef = 43EDB24216DD5C9400661DA7 /* bloktex.png */; };
+		43EDB24616DD5FD800661DA7 /* MRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EDB24516DD5FD800661DA7 /* MRect.m */; };
+		43EE594916DE84BF00867CE8 /* blobtex.png in Resources */ = {isa = PBXBuildFile; fileRef = 43EE594816DE84BF00867CE8 /* blobtex.png */; };
+		43EE594C16DFFC1600867CE8 /* MEdgeLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EE594B16DFFC1600867CE8 /* MEdgeLine.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		43157FC216DC2342004C9710 /* redtex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redtex.png; sourceTree = "<group>"; };
 		4360C14B16DBFEFF000CF56D /* TexLines.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TexLines.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4360C14E16DBFEFF000CF56D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4360C15016DBFEFF000CF56D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -47,6 +60,25 @@
 		4360C17216DBFEFF000CF56D /* Shader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.vsh; path = Shaders/Shader.vsh; sourceTree = "<group>"; };
 		4360C17416DBFEFF000CF56D /* TLViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TLViewController.h; sourceTree = "<group>"; };
 		4360C17516DBFEFF000CF56D /* TLViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TLViewController.m; sourceTree = "<group>"; };
+		4360C17C16DC0016000CF56D /* constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
+		4360C17D16DC00D9000CF56D /* MEllipse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEllipse.m; sourceTree = "<group>"; };
+		4360C17E16DC00D9000CF56D /* MLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLine.m; sourceTree = "<group>"; };
+		4360C17F16DC00D9000CF56D /* MShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MShape.m; sourceTree = "<group>"; };
+		4360C18016DC00D9000CF56D /* MSymbol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSymbol.m; sourceTree = "<group>"; };
+		4360C18116DC00D9000CF56D /* MVBShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MVBShape.m; sourceTree = "<group>"; };
+		4360C18216DC00D9000CF56D /* MEllipse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEllipse.h; sourceTree = "<group>"; };
+		4360C18316DC00D9000CF56D /* MLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLine.h; sourceTree = "<group>"; };
+		4360C18416DC00DA000CF56D /* MShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MShape.h; sourceTree = "<group>"; };
+		4360C18516DC00DA000CF56D /* MSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSymbol.h; sourceTree = "<group>"; };
+		4360C18616DC00DA000CF56D /* MVBShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MVBShape.h; sourceTree = "<group>"; };
+		4360C18D16DC0456000CF56D /* waldo_icon_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = waldo_icon_57.png; sourceTree = "<group>"; };
+		4360C18F16DC0C19000CF56D /* weetex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weetex.png; sourceTree = "<group>"; };
+		43EDB24216DD5C9400661DA7 /* bloktex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bloktex.png; sourceTree = "<group>"; };
+		43EDB24416DD5FD800661DA7 /* MRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRect.h; sourceTree = "<group>"; };
+		43EDB24516DD5FD800661DA7 /* MRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRect.m; sourceTree = "<group>"; };
+		43EE594816DE84BF00867CE8 /* blobtex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blobtex.png; sourceTree = "<group>"; };
+		43EE594A16DFFC1500867CE8 /* MEdgeLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEdgeLine.h; sourceTree = "<group>"; };
+		43EE594B16DFFC1600867CE8 /* MEdgeLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEdgeLine.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +100,7 @@
 		4360C14216DBFEFF000CF56D = {
 			isa = PBXGroup;
 			children = (
+				4360C18D16DC0456000CF56D /* waldo_icon_57.png */,
 				4360C15816DBFEFF000CF56D /* TexLines */,
 				4360C14D16DBFEFF000CF56D /* Frameworks */,
 				4360C14C16DBFEFF000CF56D /* Products */,
@@ -97,14 +130,16 @@
 		4360C15816DBFEFF000CF56D /* TexLines */ = {
 			isa = PBXGroup;
 			children = (
+				4360C18C16DC00FA000CF56D /* Shapes */,
+				4360C17416DBFEFF000CF56D /* TLViewController.h */,
+				4360C17516DBFEFF000CF56D /* TLViewController.m */,
+				4360C17016DBFEFF000CF56D /* Shader.fsh */,
+				4360C17216DBFEFF000CF56D /* Shader.vsh */,
+				4360C17C16DC0016000CF56D /* constants.h */,
 				4360C16116DBFEFF000CF56D /* TLAppDelegate.h */,
 				4360C16216DBFEFF000CF56D /* TLAppDelegate.m */,
 				4360C16A16DBFEFF000CF56D /* MainStoryboard_iPhone.storyboard */,
 				4360C16D16DBFEFF000CF56D /* MainStoryboard_iPad.storyboard */,
-				4360C17016DBFEFF000CF56D /* Shader.fsh */,
-				4360C17216DBFEFF000CF56D /* Shader.vsh */,
-				4360C17416DBFEFF000CF56D /* TLViewController.h */,
-				4360C17516DBFEFF000CF56D /* TLViewController.m */,
 				4360C15916DBFEFF000CF56D /* Supporting Files */,
 			);
 			path = TexLines;
@@ -113,6 +148,10 @@
 		4360C15916DBFEFF000CF56D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				43EE594816DE84BF00867CE8 /* blobtex.png */,
+				43EDB24216DD5C9400661DA7 /* bloktex.png */,
+				43157FC216DC2342004C9710 /* redtex.png */,
+				4360C18F16DC0C19000CF56D /* weetex.png */,
 				4360C15A16DBFEFF000CF56D /* TexLines-Info.plist */,
 				4360C15B16DBFEFF000CF56D /* InfoPlist.strings */,
 				4360C15E16DBFEFF000CF56D /* main.m */,
@@ -122,6 +161,35 @@
 				4360C16816DBFEFF000CF56D /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4360C18C16DC00FA000CF56D /* Shapes */ = {
+			isa = PBXGroup;
+			children = (
+				43EE594D16DFFC4D00867CE8 /* headers */,
+				4360C17D16DC00D9000CF56D /* MEllipse.m */,
+				4360C17E16DC00D9000CF56D /* MLine.m */,
+				4360C17F16DC00D9000CF56D /* MShape.m */,
+				4360C18016DC00D9000CF56D /* MSymbol.m */,
+				4360C18116DC00D9000CF56D /* MVBShape.m */,
+				43EDB24516DD5FD800661DA7 /* MRect.m */,
+				43EE594B16DFFC1600867CE8 /* MEdgeLine.m */,
+			);
+			name = Shapes;
+			sourceTree = "<group>";
+		};
+		43EE594D16DFFC4D00867CE8 /* headers */ = {
+			isa = PBXGroup;
+			children = (
+				4360C18216DC00D9000CF56D /* MEllipse.h */,
+				4360C18316DC00D9000CF56D /* MLine.h */,
+				4360C18416DC00DA000CF56D /* MShape.h */,
+				4360C18516DC00DA000CF56D /* MSymbol.h */,
+				4360C18616DC00DA000CF56D /* MVBShape.h */,
+				43EDB24416DD5FD800661DA7 /* MRect.h */,
+				43EE594A16DFFC1500867CE8 /* MEdgeLine.h */,
+			);
+			name = headers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,6 +252,11 @@
 				4360C16F16DBFEFF000CF56D /* MainStoryboard_iPad.storyboard in Resources */,
 				4360C17116DBFEFF000CF56D /* Shader.fsh in Resources */,
 				4360C17316DBFEFF000CF56D /* Shader.vsh in Resources */,
+				4360C18E16DC0456000CF56D /* waldo_icon_57.png in Resources */,
+				4360C19016DC0C19000CF56D /* weetex.png in Resources */,
+				43157FC316DC2342004C9710 /* redtex.png in Resources */,
+				43EDB24316DD5C9400661DA7 /* bloktex.png in Resources */,
+				43EE594916DE84BF00867CE8 /* blobtex.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +270,13 @@
 				4360C15F16DBFEFF000CF56D /* main.m in Sources */,
 				4360C16316DBFEFF000CF56D /* TLAppDelegate.m in Sources */,
 				4360C17616DBFEFF000CF56D /* TLViewController.m in Sources */,
+				4360C18716DC00DA000CF56D /* MEllipse.m in Sources */,
+				4360C18816DC00DA000CF56D /* MLine.m in Sources */,
+				4360C18916DC00DA000CF56D /* MShape.m in Sources */,
+				4360C18A16DC00DA000CF56D /* MSymbol.m in Sources */,
+				4360C18B16DC00DA000CF56D /* MVBShape.m in Sources */,
+				43EDB24616DD5FD800661DA7 /* MRect.m in Sources */,
+				43EE594C16DFFC1600867CE8 /* MEdgeLine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,6 +409,7 @@
 				4360C17B16DBFEFF000CF56D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -1,28 +1,32 @@
 //
 //  Shader.vsh
-//  TexLines
+//  Maths
 //
-//  Created by Pat Smith on 25/02/2013.
+//  Created by Pat Smith on 15/02/2013.
 //  Copyright (c) 2013 Pat Smith. All rights reserved.
 //
 
+
 attribute vec4 position;
-attribute vec3 normal;
+attribute vec2 texcoordIn;
+//attribute vec4 color;
+//attribute vec3 normal;
+
+uniform vec4 color;
 
 varying lowp vec4 colorVarying;
 
 uniform mat4 modelViewProjectionMatrix;
-uniform mat3 normalMatrix;
+//uniform mat3 normalMatrix;
+
+
+varying vec2 texcoordOut;
 
 void main()
 {
-    vec3 eyeNormal = normalize(normalMatrix * normal);
-    vec3 lightPosition = vec3(0.0, 0.0, 1.0);
-    vec4 diffuseColor = vec4(0.4, 0.4, 1.0, 1.0);
+
+    colorVarying = color;
     
-    float nDotVP = max(0.0, dot(eyeNormal, normalize(lightPosition)));
-                 
-    colorVarying = diffuseColor * nDotVP;
-    
+    texcoordOut = texcoordIn;
     gl_Position = modelViewProjectionMatrix * position;
 }

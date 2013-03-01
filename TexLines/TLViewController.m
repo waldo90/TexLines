@@ -5,8 +5,36 @@
 //  Created by Pat Smith on 25/02/2013.
 //  Copyright (c) 2013 Pat Smith. All rights reserved.
 //
+// http://stackoverflow.com/questions/2771408/opengl-es-2-0-rendering-with-a-texture
+//
+// http://stackoverflow.com/questions/1813035/opengl-es-iphone-drawing-anti-aliased-lines
+//
+/*
+ 
+ Could use endcap rectangles with a  circle texture
+ .  .
+ .  .
+ 
+ 
+ 
+ .  . 
+ .  .
 
+ Or use a triangle strip with edge overdraw.
+ 
+ In both cases it might be possible to move outer vertices in the vertex shader to acheive effects.
+
+*/
 #import "TLViewController.h"
+
+
+
+#import "constants.h"
+//#import "MEllipse.h"
+//#import "MSymbol.h"
+#import "MLine.h"
+#import "MRect.h"
+#import "MEdgeLine.h"
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
@@ -27,65 +55,27 @@ enum
     NUM_ATTRIBUTES
 };
 
-GLfloat gCubeVertexData[216] = 
-{
-    // Data layout for each line below is:
-    // positionX, positionY, positionZ,     normalX, normalY, normalZ,
-    0.5f, -0.5f, -0.5f,        1.0f, 0.0f, 0.0f,
-    0.5f, 0.5f, -0.5f,         1.0f, 0.0f, 0.0f,
-    0.5f, -0.5f, 0.5f,         1.0f, 0.0f, 0.0f,
-    0.5f, -0.5f, 0.5f,         1.0f, 0.0f, 0.0f,
-    0.5f, 0.5f, -0.5f,          1.0f, 0.0f, 0.0f,
-    0.5f, 0.5f, 0.5f,         1.0f, 0.0f, 0.0f,
-    
-    0.5f, 0.5f, -0.5f,         0.0f, 1.0f, 0.0f,
-    -0.5f, 0.5f, -0.5f,        0.0f, 1.0f, 0.0f,
-    0.5f, 0.5f, 0.5f,          0.0f, 1.0f, 0.0f,
-    0.5f, 0.5f, 0.5f,          0.0f, 1.0f, 0.0f,
-    -0.5f, 0.5f, -0.5f,        0.0f, 1.0f, 0.0f,
-    -0.5f, 0.5f, 0.5f,         0.0f, 1.0f, 0.0f,
-    
-    -0.5f, 0.5f, -0.5f,        -1.0f, 0.0f, 0.0f,
-    -0.5f, -0.5f, -0.5f,       -1.0f, 0.0f, 0.0f,
-    -0.5f, 0.5f, 0.5f,         -1.0f, 0.0f, 0.0f,
-    -0.5f, 0.5f, 0.5f,         -1.0f, 0.0f, 0.0f,
-    -0.5f, -0.5f, -0.5f,       -1.0f, 0.0f, 0.0f,
-    -0.5f, -0.5f, 0.5f,        -1.0f, 0.0f, 0.0f,
-    
-    -0.5f, -0.5f, -0.5f,       0.0f, -1.0f, 0.0f,
-    0.5f, -0.5f, -0.5f,        0.0f, -1.0f, 0.0f,
-    -0.5f, -0.5f, 0.5f,        0.0f, -1.0f, 0.0f,
-    -0.5f, -0.5f, 0.5f,        0.0f, -1.0f, 0.0f,
-    0.5f, -0.5f, -0.5f,        0.0f, -1.0f, 0.0f,
-    0.5f, -0.5f, 0.5f,         0.0f, -1.0f, 0.0f,
-    
-    0.5f, 0.5f, 0.5f,          0.0f, 0.0f, 1.0f,
-    -0.5f, 0.5f, 0.5f,         0.0f, 0.0f, 1.0f,
-    0.5f, -0.5f, 0.5f,         0.0f, 0.0f, 1.0f,
-    0.5f, -0.5f, 0.5f,         0.0f, 0.0f, 1.0f,
-    -0.5f, 0.5f, 0.5f,         0.0f, 0.0f, 1.0f,
-    -0.5f, -0.5f, 0.5f,        0.0f, 0.0f, 1.0f,
-    
-    0.5f, -0.5f, -0.5f,        0.0f, 0.0f, -1.0f,
-    -0.5f, -0.5f, -0.5f,       0.0f, 0.0f, -1.0f,
-    0.5f, 0.5f, -0.5f,         0.0f, 0.0f, -1.0f,
-    0.5f, 0.5f, -0.5f,         0.0f, 0.0f, -1.0f,
-    -0.5f, -0.5f, -0.5f,       0.0f, 0.0f, -1.0f,
-    -0.5f, 0.5f, -0.5f,        0.0f, 0.0f, -1.0f
-};
 
 @interface TLViewController () {
     GLuint _program;
     
     GLKMatrix4 _modelViewProjectionMatrix;
     GLKMatrix3 _normalMatrix;
-    float _rotation;
     
-    GLuint _vertexArray;
-    GLuint _vertexBuffer;
+    GLuint _positionSlot;
+    GLuint _colorSlot;
+    
+    MLine*   _line;
+    MRect* _rect;
+    MEdgeLine* _edgeLine;
+    
+    GLKTextureInfo* _texture;
+    GLuint _texCoordSlot;
+    GLuint _textureUniform;
+    
+    float _cheeky;
 }
 @property (strong, nonatomic) EAGLContext *context;
-@property (strong, nonatomic) GLKBaseEffect *effect;
 
 - (void)setupGL;
 - (void)tearDownGL;
@@ -103,7 +93,7 @@ GLfloat gCubeVertexData[216] =
     [super viewDidLoad];
     
     self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
-
+    
     if (!self.context) {
         NSLog(@"Failed to create ES context");
     }
@@ -111,12 +101,13 @@ GLfloat gCubeVertexData[216] =
     GLKView *view = (GLKView *)self.view;
     view.context = self.context;
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
+    view.drawableMultisample = GLKViewDrawableMultisample4X;
     
     [self setupGL];
 }
 
 - (void)dealloc
-{    
+{
     [self tearDownGL];
     
     if ([EAGLContext currentContext] == self.context) {
@@ -127,7 +118,7 @@ GLfloat gCubeVertexData[216] =
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-
+    
     if ([self isViewLoaded] && ([[self view] window] == nil)) {
         self.view = nil;
         
@@ -138,7 +129,7 @@ GLfloat gCubeVertexData[216] =
         }
         self.context = nil;
     }
-
+    
     // Dispose of any resources that can be recreated.
 }
 
@@ -147,36 +138,29 @@ GLfloat gCubeVertexData[216] =
     [EAGLContext setCurrentContext:self.context];
     
     [self loadShaders];
+
+    NSError *error;
+    NSString* texPath = [[NSBundle mainBundle] pathForResource:@"blobtex" ofType:@"png"];
+    _texture = [GLKTextureLoader textureWithContentsOfFile:texPath options:nil error:&error];
+    if (error) {
+        NSLog(@"Error loading texture from image: %@",error);
+    }
+
+    _line    = [[MLine   alloc] initWithPos:_positionSlot];
+    _rect = [[MRect alloc] initWithPos:_positionSlot andTexSlot:_texCoordSlot];
+    _rect.texture = _texture;
+    [_rect setupGL];
+ 
     
-    self.effect = [[GLKBaseEffect alloc] init];
-    self.effect.light0.enabled = GL_TRUE;
-    self.effect.light0.diffuseColor = GLKVector4Make(1.0f, 0.4f, 0.4f, 1.0f);
-    
-    glEnable(GL_DEPTH_TEST);
-    
-    glGenVertexArraysOES(1, &_vertexArray);
-    glBindVertexArrayOES(_vertexArray);
-    
-    glGenBuffers(1, &_vertexBuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(gCubeVertexData), gCubeVertexData, GL_STATIC_DRAW);
-    
-    glEnableVertexAttribArray(GLKVertexAttribPosition);
-    glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, 24, BUFFER_OFFSET(0));
-    glEnableVertexAttribArray(GLKVertexAttribNormal);
-    glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, 24, BUFFER_OFFSET(12));
-    
-    glBindVertexArrayOES(0);
+//    _edgeLine = [[MEdgeLine alloc] initWithPos:_positionSlot andColorSlot:_colorSlot];
+
 }
 
 - (void)tearDownGL
 {
     [EAGLContext setCurrentContext:self.context];
     
-    glDeleteBuffers(1, &_vertexBuffer);
-    glDeleteVertexArraysOES(1, &_vertexArray);
-    
-    self.effect = nil;
+    // TODO delete GL buffers generated by shapes
     
     if (_program) {
         glDeleteProgram(_program);
@@ -188,52 +172,53 @@ GLfloat gCubeVertexData[216] =
 
 - (void)update
 {
-    float aspect = fabsf(self.view.bounds.size.width / self.view.bounds.size.height);
-    GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f), aspect, 0.1f, 100.0f);
+    //    float aspect = fabsf(self.view.bounds.size.width / self.view.bounds.size.height);
     
-    self.effect.transform.projectionMatrix = projectionMatrix;
+    float left   = (self.view.bounds.size.width  / 2) / - 100.0;
+    float right  = (self.view.bounds.size.width  / 2) /   100.0;
+    float bottom = (self.view.bounds.size.height / 2) / - 100.0;
+    float top    = (self.view.bounds.size.height / 2) /   100.0;
+    GLKMatrix4 projectionMatrix = GLKMatrix4MakeOrtho(left, right, bottom, top, 0.0f, 10.0f);
+    _modelViewProjectionMatrix = projectionMatrix;
     
-    GLKMatrix4 baseModelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, -4.0f);
-    baseModelViewMatrix = GLKMatrix4Rotate(baseModelViewMatrix, _rotation, 0.0f, 1.0f, 0.0f);
+    _cheeky += self.timeSinceLastUpdate;
     
-    // Compute the model view matrix for the object rendered with GLKit
-    GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, -1.5f);
-    modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, _rotation, 1.0f, 1.0f, 1.0f);
-    modelViewMatrix = GLKMatrix4Multiply(baseModelViewMatrix, modelViewMatrix);
-    
-    self.effect.transform.modelviewMatrix = modelViewMatrix;
-    
-    // Compute the model view matrix for the object rendered with ES2
-    modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, 1.5f);
-    modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, _rotation, 1.0f, 1.0f, 1.0f);
-    modelViewMatrix = GLKMatrix4Multiply(baseModelViewMatrix, modelViewMatrix);
-    
-    _normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(modelViewMatrix), NULL);
-    
-    _modelViewProjectionMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix);
-    
-    _rotation += self.timeSinceLastUpdate * 0.5f;
+        
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
 {
-    glClearColor(0.65f, 0.65f, 0.65f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
+    // glEnable(GL_TEXTURE_2D);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE);//GL_ONE_MINUS_SRC_ALPHA);
     
-    glBindVertexArrayOES(_vertexArray);
-    
-    // Render the object with GLKit
-    [self.effect prepareToDraw];
-    
-    glDrawArrays(GL_TRIANGLES, 0, 36);
-    
-    // Render the object again with ES2
     glUseProgram(_program);
-    
     glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, 0, _modelViewProjectionMatrix.m);
-    glUniformMatrix3fv(uniforms[UNIFORM_NORMAL_MATRIX], 1, 0, _normalMatrix.m);
+        
+    glBindVertexArrayOES(0);
+
+    // Line
+    glUniform4f(_colorSlot, 1.0f, 0.1f, 0.6f, 1.0f);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, _texture.name);
+    glUniform1i(_textureUniform, 0);
+    glEnableVertexAttribArray(_texCoordSlot);
+    glVertexAttribPointer(_texCoordSlot, 2, GL_FLOAT, GL_FALSE, 16, (GLvoid*)_line.vertices + 8);
+    [_line render];
     
-    glDrawArrays(GL_TRIANGLES, 0, 36);
+    
+    // Rect
+   // glUniform1i(_textureUniform, 0);
+    _modelViewProjectionMatrix = GLKMatrix4Translate(_modelViewProjectionMatrix, 0.0f, sinf(_cheeky), 0.0f);
+    glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, 0, _modelViewProjectionMatrix.m);
+    glUniform4f(_colorSlot, 1.0f, 1.0f, 0.0f, 1.2f + sinf(_cheeky));
+    [_rect render];
+    
+    //[_edgeLine render];
+    
 }
 
 #pragma mark -  OpenGL ES 2 shader compilation
@@ -269,7 +254,9 @@ GLfloat gCubeVertexData[216] =
     // Bind attribute locations.
     // This needs to be done prior to linking.
     glBindAttribLocation(_program, GLKVertexAttribPosition, "position");
-    glBindAttribLocation(_program, GLKVertexAttribNormal, "normal");
+    //    glBindAttribLocation(_program, GLKVertexAttribNormal, "normal");
+    glBindAttribLocation(_program, GLKVertexAttribTexCoord0, "texcoordIn");
+//    glBindAttribLocation(_program, GLKVertexAttribColor, "color");
     
     // Link program.
     if (![self linkProgram:_program]) {
@@ -293,7 +280,24 @@ GLfloat gCubeVertexData[216] =
     
     // Get uniform locations.
     uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX] = glGetUniformLocation(_program, "modelViewProjectionMatrix");
-    uniforms[UNIFORM_NORMAL_MATRIX] = glGetUniformLocation(_program, "normalMatrix");
+    //    uniforms[UNIFORM_NORMAL_MATRIX] = glGetUniformLocation(_program, "normalMatrix");
+    
+    _positionSlot = glGetAttribLocation(_program, "position");
+    _colorSlot = glGetUniformLocation(_program, "color");
+//    _colorSlot = glGetAttribLocation(_program, "color");
+    if (_colorSlot == -1) {
+        NSLog(@"colorSlot error");
+    }
+   
+    _texCoordSlot = glGetAttribLocation(_program, "texcoordIn");
+    if (_texCoordSlot == -1) {
+        NSLog(@"texCoordSlot error");
+    }
+    glEnableVertexAttribArray(_texCoordSlot);
+    _textureUniform = glGetUniformLocation(_program, "texture");
+    if (_textureUniform == -1) {
+        NSLog(@"textureUniform error");
+    }
     
     // Release vertex and fragment shaders.
     if (vertShader) {
