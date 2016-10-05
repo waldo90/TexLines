@@ -27,10 +27,7 @@
 */
 
 #import <OpenGLES/ES2/glext.h>
-
 #import "TLViewController.h"
-
-
 
 #import "constants.h"
 //#import "MEllipse.h"
@@ -149,14 +146,10 @@ enum
         NSLog(@"Error loading texture from image: %@",error);
     }
 
-    _line    = [[MLine   alloc] initWithPos:_positionSlot];
+    _line = [[MLine alloc] initWithPos:_positionSlot];
     _rect = [[MRect alloc] initWithPos:_positionSlot andTexSlot:_texCoordSlot];
     _rect.texture = _texture;
     [_rect setupGL];
- 
-    
-//    _edgeLine = [[MEdgeLine alloc] initWithPos:_positionSlot andColorSlot:_colorSlot];
-
 }
 
 - (void)tearDownGL
@@ -175,8 +168,6 @@ enum
 
 - (void)update
 {
-    //    float aspect = fabsf(self.view.bounds.size.width / self.view.bounds.size.height);
-    
     float left   = (self.view.bounds.size.width  / 2) / - 100.0;
     float right  = (self.view.bounds.size.width  / 2) /   100.0;
     float bottom = (self.view.bounds.size.height / 2) / - 100.0;
@@ -193,9 +184,8 @@ enum
 {
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
-    // glEnable(GL_TEXTURE_2D);
     glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE);//GL_ONE_MINUS_SRC_ALPHA);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE);
     
     glUseProgram(_program);
     glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, 0, _modelViewProjectionMatrix.m);
@@ -214,14 +204,10 @@ enum
     
     
     // Rect
-   // glUniform1i(_textureUniform, 0);
     _modelViewProjectionMatrix = GLKMatrix4Translate(_modelViewProjectionMatrix, 0.0f, sinf(_cheeky), 0.0f);
     glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, 0, _modelViewProjectionMatrix.m);
     glUniform4f(_colorSlot, 1.0f, 1.0f, 0.0f, 1.0f);
     [_rect render];
-    
-    //[_edgeLine render];
-    
 }
 
 #pragma mark -  OpenGL ES 2 shader compilation
@@ -257,9 +243,8 @@ enum
     // Bind attribute locations.
     // This needs to be done prior to linking.
     glBindAttribLocation(_program, GLKVertexAttribPosition, "position");
-    //    glBindAttribLocation(_program, GLKVertexAttribNormal, "normal");
     glBindAttribLocation(_program, GLKVertexAttribTexCoord0, "texcoordIn");
-//    glBindAttribLocation(_program, GLKVertexAttribColor, "color");
+
     
     // Link program.
     if (![self linkProgram:_program]) {
@@ -283,11 +268,10 @@ enum
     
     // Get uniform locations.
     uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX] = glGetUniformLocation(_program, "modelViewProjectionMatrix");
-    //    uniforms[UNIFORM_NORMAL_MATRIX] = glGetUniformLocation(_program, "normalMatrix");
     
     _positionSlot = glGetAttribLocation(_program, "position");
     _colorSlot = glGetUniformLocation(_program, "color");
-//    _colorSlot = glGetAttribLocation(_program, "color");
+    
     if (_colorSlot == -1) {
         NSLog(@"colorSlot error");
     }
