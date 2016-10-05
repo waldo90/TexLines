@@ -25,6 +25,9 @@
  In both cases it might be possible to move outer vertices in the vertex shader to acheive effects.
 
 */
+
+#import <OpenGLES/ES2/glext.h>
+
 #import "TLViewController.h"
 
 
@@ -214,7 +217,7 @@ enum
    // glUniform1i(_textureUniform, 0);
     _modelViewProjectionMatrix = GLKMatrix4Translate(_modelViewProjectionMatrix, 0.0f, sinf(_cheeky), 0.0f);
     glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, 0, _modelViewProjectionMatrix.m);
-    glUniform4f(_colorSlot, 1.0f, 1.0f, 0.0f, 1.2f + sinf(_cheeky));
+    glUniform4f(_colorSlot, 1.0f, 1.0f, 0.0f, 1.0f);
     [_rect render];
     
     //[_edgeLine render];

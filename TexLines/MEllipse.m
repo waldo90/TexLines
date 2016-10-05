@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Pat Smith. All rights reserved.
 //
 
+#import <OpenGLES/ES2/glext.h>
 #import "MEllipse.h"
 
 @interface MEllipse ()
