@@ -29,7 +29,6 @@
 		4360C18916DC00DA000CF56D /* MShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 4360C17F16DC00D9000CF56D /* MShape.m */; };
 		4360C18A16DC00DA000CF56D /* MSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = 4360C18016DC00D9000CF56D /* MSymbol.m */; };
 		4360C18B16DC00DA000CF56D /* MVBShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 4360C18116DC00D9000CF56D /* MVBShape.m */; };
-		4360C18E16DC0456000CF56D /* waldo_icon_57.png in Resources */ = {isa = PBXBuildFile; fileRef = 4360C18D16DC0456000CF56D /* waldo_icon_57.png */; };
 		4360C19016DC0C19000CF56D /* weetex.png in Resources */ = {isa = PBXBuildFile; fileRef = 4360C18F16DC0C19000CF56D /* weetex.png */; };
 		43EDB24316DD5C9400661DA7 /* bloktex.png in Resources */ = {isa = PBXBuildFile; fileRef = 43EDB24216DD5C9400661DA7 /* bloktex.png */; };
 		43EDB24616DD5FD800661DA7 /* MRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EDB24516DD5FD800661DA7 /* MRect.m */; };
@@ -71,7 +70,6 @@
 		4360C18416DC00DA000CF56D /* MShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MShape.h; sourceTree = "<group>"; };
 		4360C18516DC00DA000CF56D /* MSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSymbol.h; sourceTree = "<group>"; };
 		4360C18616DC00DA000CF56D /* MVBShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MVBShape.h; sourceTree = "<group>"; };
-		4360C18D16DC0456000CF56D /* waldo_icon_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = waldo_icon_57.png; sourceTree = "<group>"; };
 		4360C18F16DC0C19000CF56D /* weetex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weetex.png; sourceTree = "<group>"; };
 		43EDB24216DD5C9400661DA7 /* bloktex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bloktex.png; sourceTree = "<group>"; };
 		43EDB24416DD5FD800661DA7 /* MRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRect.h; sourceTree = "<group>"; };
@@ -100,7 +98,6 @@
 		4360C14216DBFEFF000CF56D = {
 			isa = PBXGroup;
 			children = (
-				4360C18D16DC0456000CF56D /* waldo_icon_57.png */,
 				4360C15816DBFEFF000CF56D /* TexLines */,
 				4360C14D16DBFEFF000CF56D /* Frameworks */,
 				4360C14C16DBFEFF000CF56D /* Products */,
@@ -252,7 +249,6 @@
 				4360C16F16DBFEFF000CF56D /* MainStoryboard_iPad.storyboard in Resources */,
 				4360C17116DBFEFF000CF56D /* Shader.fsh in Resources */,
 				4360C17316DBFEFF000CF56D /* Shader.vsh in Resources */,
-				4360C18E16DC0456000CF56D /* waldo_icon_57.png in Resources */,
 				4360C19016DC0C19000CF56D /* weetex.png in Resources */,
 				43157FC316DC2342004C9710 /* redtex.png in Resources */,
 				43EDB24316DD5C9400661DA7 /* bloktex.png in Resources */,
